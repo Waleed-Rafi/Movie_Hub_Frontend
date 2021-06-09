@@ -1,0 +1,17 @@
+.carousel-inner {
+    height: 94vh;
+}
+
+.carousel-inner img {
+    height: 94vh;
+    width: 100vw;
+    object-fit: fill;
+}
+
+.cards {
+    margin: 5rem 15rem;
+}
+
+.card {
+    margin: 5rem 5rem;
+}

@@ -1,6 +1,18 @@
 import * as React from "react";
 
-const Carousel: React.FC = () => {
+interface MoviesData {
+  MOV_ID: number;
+  MOV_NAME: string;
+  MOV_LANG: string;
+  MOV_THUMBNAIL: string;
+  MOV_HOUR?: string;
+  MOV_DATE?: string;
+}
+
+const Carousel: React.FC<{ moviesData: MoviesData[] }> = ({ moviesData }) => {
+  if (moviesData.length > 3) {
+    moviesData = moviesData.slice(0, 4);
+  }
   return (
     <div
       id="carouselExampleIndicators"
@@ -30,27 +42,21 @@ const Carousel: React.FC = () => {
         ></button>
       </div>
       <div className="carousel-inner">
-        <div className="carousel-item active">
-          <img
-            src="https://www.easterneye.biz/wp-content/uploads/2021/04/Radhe-trailer.jpg"
-            className="d-block w-100"
-            alt="..."
-          />
-        </div>
-        <div className="carousel-item">
-          <img
-            src="https://www.sociallykeeda.com/wp-content/uploads/2021/02/Roohi-Movie-1000x600.jpg"
-            className="d-block w-100"
-            alt="..."
-          />
-        </div>
-        <div className="carousel-item">
-          <img
-            src="http://adwallpapers.xyz/uploads/posts/72858-the-amazing-spider-man-movie-wallpaper-4k-ultra-hd-wallpaper__movies-and-tv.jpg"
-            className="d-block w-100"
-            alt="..."
-          />
-        </div>
+        {moviesData.map((data, index) => {
+          if (index < 3)
+            return (
+              <div
+                className={"carousel-item" + (index === 0 ? " active" : "")}
+                key={data.MOV_ID}
+              >
+                <img
+                  src={data.MOV_THUMBNAIL}
+                  className="d-block w-100"
+                  alt="..."
+                />
+              </div>
+            );
+        })}
       </div>
       <button
         className="carousel-control-prev"

@@ -1,0 +1,25 @@
+/* Carousel Component */
+
+.carousel-inner {
+    height: 94vh;
+}
+
+.carousel-inner img {
+    height: 94vh;
+    width: 100vw;
+    object-fit: fill;
+}
+
+
+/* Card Component */
+
+.card {
+    margin-top: 5rem;
+}
+
+.card-group {
+    margin: 5rem 20rem;
+    display: grid;
+    grid-template-columns: 30% 30% 30%;
+    column-gap: 5%;
+}

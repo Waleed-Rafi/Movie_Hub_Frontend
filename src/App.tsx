@@ -1,23 +1,21 @@
 import React from "react";
-import Carousel from "./Components/Carousel";
 import "./App.css";
 import Header from "./Components/Header";
-import Card from "./Components/Card";
+import Home from "./Screens/Home";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import CreateMovie from "./Screens/CreateMovie";
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <Carousel />
-      <div className="cards">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+    <Router>
+      <div className="App">
+        <Header />
       </div>
-    </div>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/create" component={CreateMovie} />
+      </Switch>
+    </Router>
   );
 }
 

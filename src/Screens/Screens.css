@@ -1,0 +1,28 @@
+/* Home Screen
+
+.cards {
+    margin: 5rem 15rem;
+} */
+
+
+/* CreateMovie Screen */
+
+.create-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5rem;
+}
+
+.create-heading {
+    margin-bottom: 2rem;
+}
+
+.create-form input {
+    margin-bottom: 30px;
+    width: 25rem;
+}
+
+.create-submit-button {
+    margin-top: 20px;
+}

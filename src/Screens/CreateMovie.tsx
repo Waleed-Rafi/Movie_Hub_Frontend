@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import AppInput from "../Components/AppInput";
+import AppSubmitButton from "../Components/AppSubmitButton";
 import "./Screens.css";
 
 interface movieDataIF {
@@ -33,43 +34,7 @@ export default function CreateMovie() {
   return (
     <div className="create-form">
       <h1 className="create-heading">CREATE NEW MOVIES</h1>
-      <br />
       <form onSubmit={(e) => submitHandler(e)}>
-        {/* <input
-          name="Mov_Name"
-          className="form-control"
-          placeholder="Name"
-          value={movieData.Mov_Name}
-          onChange={(e) => changeHandler(e)}
-        />
-        <input
-          name="Mov_Lang"
-          className="form-control"
-          placeholder="Language"
-          value={movieData.Mov_Lang}
-          onChange={(e) => changeHandler(e)}
-        />
-        <input
-          name="Mov_Thumbnail"
-          className="form-control"
-          placeholder="Thumbnail Url"
-          value={movieData.Mov_Thumbnail}
-          onChange={(e) => changeHandler(e)}
-        />
-        <input
-          name="Mov_Hour"
-          className="form-control"
-          placeholder="Play Time in (hh:mm:ss)"
-          value={movieData.Mov_Hour}
-          onChange={(e) => changeHandler(e)}
-        />
-        <input
-          name="Mov_Date"
-          className="form-control"
-          placeholder="Movie Date in (yyyy-mm-dd)"
-          value={movieData.Mov_Date}
-          onChange={(e) => changeHandler(e)}
-        /> */}
         <AppInput
           name="Mov_Name"
           placeholder="Name"
@@ -100,14 +65,7 @@ export default function CreateMovie() {
           value={movieData.Mov_Date}
           changeHandler={changeHandler}
         />
-        <div className="d-grid gap-2 col-20 mx-auto">
-          <button
-            className="btn btn-primary create-submit-button"
-            type="submit"
-          >
-            CREATE
-          </button>
-        </div>
+        <AppSubmitButton title="CREATE" />
       </form>
     </div>
   );

@@ -43,7 +43,7 @@ const Carousel: React.FC<{ moviesData: MoviesData[] }> = ({ moviesData }) => {
       </div>
       <div className="carousel-inner">
         {moviesData.map((data, index) => {
-          if (index < 3)
+          if (index < 3) {
             return (
               <div
                 className={"carousel-item" + (index === 0 ? " active" : "")}
@@ -56,6 +56,9 @@ const Carousel: React.FC<{ moviesData: MoviesData[] }> = ({ moviesData }) => {
                 />
               </div>
             );
+          } else {
+            return null;
+          }
         })}
       </div>
       <button

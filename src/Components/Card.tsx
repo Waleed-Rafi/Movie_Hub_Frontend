@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import axios from "../axios/axios";
 import "./Components.css";
 
@@ -45,12 +46,13 @@ const Card: React.FC<{
                 </small>
               </p>
               <div style={{ textAlign: "left" }}>
-                <button
+                <Link
+                  to={`/edit?mov_id=${data.MOV_ID}`}
                   className="btn btn-primary"
                   style={{ marginRight: "20px", width: "9rem" }}
                 >
                   Edit
-                </button>
+                </Link>
                 <button
                   className="btn btn-danger"
                   style={{ width: "9rem" }}

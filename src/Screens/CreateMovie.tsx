@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AppInput from "../Components/AppInput";
 import AppSubmitButton from "../Components/AppSubmitButton";
 import "./Screens.css";
@@ -14,7 +14,16 @@ interface movieDataIF {
   MOV_DATE?: string;
 }
 
-const CreateMovie: React.FC = () => {
+enum ComponentType {
+  CREATE = "CREATE",
+  EDIT = "EDIT",
+}
+
+interface Props {
+  componentType: ComponentType;
+}
+
+const CreateMovie: React.FC<Props> = ({ componentType }) => {
   const [movieData, setMovieData] = useState<movieDataIF>({
     MOV_NAME: "",
     MOV_LANG: "",
@@ -22,6 +31,19 @@ const CreateMovie: React.FC = () => {
     MOV_HOUR: "",
     MOV_DATE: "",
   });
+  const urlParams = new URLSearchParams(window.location.search)!;
+  useEffect(() => {
+    if (componentType === ComponentType.EDIT) {
+      const movieId = parseInt(urlParams.get("mov_id")!);
+      axios
+        .get(`/movie/find?mov_id=${movieId}`)
+        .then((response: AxiosResponse) => {
+          let tempObj = response.data.data[0];
+          delete tempObj.MOV_ID;
+          setMovieData(tempObj);
+        });
+    }
+  }, []);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
@@ -34,7 +56,7 @@ const CreateMovie: React.FC = () => {
     setSuccessMessage(null);
   };
 
-  const submitHandler = (e: React.FormEvent<HTMLFormElement>): void => {
+  const createSubmitHandler = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     let data = { ...movieData };
     if (data.MOV_DATE?.length === 0) delete data.MOV_DATE;
@@ -50,15 +72,47 @@ const CreateMovie: React.FC = () => {
       }
     });
   };
+
+  const updateSubmitHandler = (e: React.FormEvent<HTMLFormElement>): void => {
+    e.preventDefault();
+    const movieId = parseInt(urlParams.get("mov_id")!);
+    let data = {
+      MOV_ID: movieId,
+      ...movieData,
+    };
+    if (data.MOV_DATE?.length === 0) delete data.MOV_DATE;
+    else data.MOV_DATE = movieData.MOV_DATE?.slice(0, 10);
+    if (data.MOV_HOUR?.length === 0) delete data.MOV_HOUR;
+
+    axios.put("/movie/update", data).then((response: AxiosResponse) => {
+      if (response.data.error) {
+        setErrorMessage(response.data.error);
+        setSuccessMessage(null);
+      } else if (response.data.success) {
+        setSuccessMessage(response.data.success);
+        setErrorMessage(null);
+      }
+    });
+  };
   return (
     <div className="create-form">
-      <h1 className="create-heading">CREATE NEW MOVIES</h1>
+      <h1 className="create-heading">
+        {componentType === ComponentType.CREATE
+          ? "CREATE NEW MOVIES"
+          : "EDIT MOVIE"}
+      </h1>
       <AppAlert
         visible={errorMessage || successMessage ? true : false}
         errorMessage={errorMessage}
         successMessage={successMessage}
       />
-      <form onSubmit={(e) => submitHandler(e)}>
+      <form
+        onSubmit={(e) => {
+          componentType === ComponentType.CREATE
+            ? createSubmitHandler(e)
+            : updateSubmitHandler(e);
+        }}
+      >
         <AppInput
           name="MOV_NAME"
           placeholder="Name"
@@ -89,7 +143,9 @@ const CreateMovie: React.FC = () => {
           value={movieData.MOV_DATE || ""}
           changeHandler={changeHandler}
         />
-        <AppSubmitButton title="CREATE" />
+        <AppSubmitButton
+          title={componentType === ComponentType.CREATE ? "CREATE" : "UPDATE"}
+        />
       </form>
     </div>
   );

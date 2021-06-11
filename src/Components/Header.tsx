@@ -40,7 +40,7 @@ export default function Header() {
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                Dropdown
+                Movies
               </Link>
               <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li>

@@ -1,5 +1,4 @@
 import React from "react";
-import { JsxElement } from "typescript";
 
 const AppAlert: React.FC<{
   visible: boolean;

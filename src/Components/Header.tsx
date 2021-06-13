@@ -31,6 +31,16 @@ export default function Header() {
                 Create Movie
               </Link>
             </li>
+            <li className="nav-item">
+              <Link to="/ticket/create" className="nav-link">
+                Create Ticket
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/tickets/all" className="nav-link">
+                Tickets
+              </Link>
+            </li>
             <li className="nav-item dropdown">
               <Link
                 to="/"

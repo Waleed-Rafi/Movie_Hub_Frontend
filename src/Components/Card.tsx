@@ -42,7 +42,9 @@ const Card: React.FC<{
               <p className="card-text">{data.MOV_LANG}</p>
               <p className="card-text">
                 <small className="text-muted">
-                  {data.MOV_HOUR + " " + data.MOV_DATE}
+                  {data.MOV_DATE?.split("").splice(0, 10).join("") +
+                    " " +
+                    data.MOV_HOUR}
                 </small>
               </p>
               <div style={{ textAlign: "left" }}>

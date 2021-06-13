@@ -38,7 +38,9 @@ const Card: React.FC<{
           >
             <img src={data.MOV_THUMBNAIL} className="card-img-top" alt="..." />
             <div className="card-body">
-              <h5 className="card-title">{data.MOV_NAME}</h5>
+              <h5 className="card-title">
+                {'"' + data.MOV_ID + '" ' + data.MOV_NAME}
+              </h5>
               <p className="card-text">{data.MOV_LANG}</p>
               <p className="card-text">
                 <small className="text-muted">

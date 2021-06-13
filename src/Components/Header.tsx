@@ -27,6 +27,11 @@ export default function Header() {
               </Link>
             </li>
             <li className="nav-item">
+              <Link to="/tickets/all" className="nav-link">
+                Tickets
+              </Link>
+            </li>
+            <li className="nav-item">
               <Link to="/create" className="nav-link">
                 Create Movie
               </Link>
@@ -35,38 +40,6 @@ export default function Header() {
               <Link to="/ticket/create" className="nav-link">
                 Create Ticket
               </Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/tickets/all" className="nav-link">
-                Tickets
-              </Link>
-            </li>
-            <li className="nav-item dropdown">
-              <Link
-                to="/"
-                className="nav-link dropdown-toggle"
-                id="navbarDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Movies
-              </Link>
-              <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li>
-                  <Link to="/" className="dropdown-item" href="#">
-                    Action
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/" className="dropdown-item" href="#">
-                    Another action
-                  </Link>
-                </li>
-                <li>
-                  <hr className="dropdown-divider" />
-                </li>
-              </ul>
             </li>
           </ul>
           <form className="d-flex">

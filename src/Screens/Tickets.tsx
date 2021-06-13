@@ -33,7 +33,6 @@ const Tickets = () => {
   return (
     <div>
       <h1 style={{ textAlign: "center", marginTop: "4rem" }}>
-        {/* TICKETS FOR MOVIES */}
         TICKETS FOR MOVIES
       </h1>
       <AppTable allTickets={allTickets} ticketDeleteHandler={deleteHandler} />

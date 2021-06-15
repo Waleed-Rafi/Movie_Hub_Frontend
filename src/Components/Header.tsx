@@ -32,6 +32,11 @@ export default function Header() {
               </Link>
             </li>
             <li className="nav-item">
+              <Link to="/customers/all" className="nav-link">
+                Customers
+              </Link>
+            </li>
+            <li className="nav-item">
               <Link to="/create" className="nav-link">
                 Create Movie
               </Link>
@@ -39,6 +44,11 @@ export default function Header() {
             <li className="nav-item">
               <Link to="/ticket/create" className="nav-link">
                 Create Ticket
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/customer/create" className="nav-link">
+                Create Customer
               </Link>
             </li>
           </ul>

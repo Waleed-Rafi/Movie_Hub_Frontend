@@ -8,6 +8,8 @@ import Tickets from "./Screens/Tickets";
 import CreateTickets from "./Screens/CreateTickets";
 import Customers from "./Screens/Customers";
 import CreateCustomer from "./Screens/CreateCustomer";
+import CreatePayment from "./Screens/CreatePayment";
+import Payments from "./Screens/Payments";
 
 enum ComponentType {
   CREATE = "CREATE",
@@ -24,7 +26,7 @@ function App() {
         <Route exact path="/" component={Home} />
         <Route
           exact
-          path="/create"
+          path="/movie/create"
           component={() => <CreateMovie componentType={ComponentType.CREATE} />}
         />
         <Route
@@ -38,6 +40,8 @@ function App() {
         <Route exact path="/ticket/create" component={CreateTickets} />
         <Route exact path="/customers/all" component={Customers} />
         <Route exact path="/customer/create" component={CreateCustomer} />
+        <Route exact path="/payments/all" component={Payments} />
+        <Route exact path="/payment/create" component={CreatePayment} />
       </Switch>
     </Router>
   );

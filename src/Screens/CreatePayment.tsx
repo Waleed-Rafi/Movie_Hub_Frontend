@@ -6,26 +6,24 @@ import axios from "../axios/axios";
 import { AxiosResponse } from "axios";
 import AppAlert from "../Components/AppAlert";
 
-interface CustomersIF {
-  CUSTOMER_NAME: string;
-  CUSTOMER_ADDRESS: string;
-  CUSTOMER_EMAIL: string;
-  CUSTOMER_PHONE: string;
+interface PaymentIF {
+  AMOUNT: string;
+  DATE_OF_PAYMENT: string;
+  C_ID: string;
 }
 
-const CreateCustomer: React.FC = () => {
-  const [customersData, setCustomersData] = useState<CustomersIF>({
-    CUSTOMER_NAME: "",
-    CUSTOMER_EMAIL: "",
-    CUSTOMER_ADDRESS: "",
-    CUSTOMER_PHONE: "",
+const CreatePayment: React.FC = () => {
+  const [paymentData, setPaymentData] = useState<PaymentIF>({
+    AMOUNT: "",
+    DATE_OF_PAYMENT: "",
+    C_ID: "",
   });
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    setCustomersData({
-      ...customersData,
+    setPaymentData({
+      ...paymentData,
       [e.target.name]: e.target.value.toString(),
     });
     setErrorMessage(null);
@@ -35,12 +33,12 @@ const CreateCustomer: React.FC = () => {
   const createSubmitHandler = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     let data: any = {
-      ...customersData,
+      ...paymentData,
     };
-    if (data.CUSTOMER_EMAIL.length === 0) delete data.CUSTOMER_EMAIL;
-    if (data.CUSTOMER_PHONE.length === 0) delete data.CUSTOMER_PHONE;
+    data.C_ID = parseInt(data.C_ID);
+    data.AMOUNT = parseInt(data.AMOUNT);
 
-    axios.post("/customer/create", data).then((response: AxiosResponse) => {
+    axios.post("/payment/create", data).then((response: AxiosResponse) => {
       if (response.data.error) {
         setErrorMessage(response.data.error);
         setSuccessMessage(null);
@@ -53,7 +51,7 @@ const CreateCustomer: React.FC = () => {
 
   return (
     <div className="create-form">
-      <h1 className="create-heading">CREATE NEW CUSTOMERS</h1>
+      <h1 className="create-heading">CREATE NEW PAYMENTS</h1>
       <AppAlert
         visible={errorMessage || successMessage ? true : false}
         errorMessage={errorMessage}
@@ -65,34 +63,30 @@ const CreateCustomer: React.FC = () => {
         }}
       >
         <AppInput
-          name="CUSTOMER_NAME"
-          placeholder="Customer Name"
-          value={customersData.CUSTOMER_NAME}
-          changeHandler={changeHandler}
-        />
-        <AppInput
-          name="CUSTOMER_EMAIL"
-          placeholder="Customer Email (optional)"
-          value={customersData.CUSTOMER_EMAIL}
-          changeHandler={changeHandler}
-        />
-        <AppInput
-          name="CUSTOMER_ADDRESS"
-          placeholder="Customer Address"
-          value={customersData.CUSTOMER_ADDRESS}
-          changeHandler={changeHandler}
-        />
-        <AppInput
-          name="CUSTOMER_PHONE"
-          placeholder="Customer Phone (optional)"
+          name="AMOUNT"
+          placeholder="Amount"
           type="number"
-          value={customersData.CUSTOMER_PHONE}
+          value={paymentData.AMOUNT}
           changeHandler={changeHandler}
         />
+        <AppInput
+          name="DATE_OF_PAYMENT"
+          placeholder="DATE_OF_PAYMENT (YYYY-MM-DD)"
+          value={paymentData.DATE_OF_PAYMENT}
+          changeHandler={changeHandler}
+        />
+        <AppInput
+          name="C_ID"
+          placeholder="Customer ID"
+          type="number"
+          value={paymentData.C_ID}
+          changeHandler={changeHandler}
+        />
+
         <AppSubmitButton title="CREATE" />
       </form>
     </div>
   );
 };
 
-export default CreateCustomer;
+export default CreatePayment;

@@ -53,13 +53,13 @@ const Card: React.FC<{
                 <Link
                   to={`/edit?mov_id=${data.MOV_ID}`}
                   className="btn btn-primary"
-                  style={{ marginRight: "20px", width: "9rem" }}
+                  style={{ marginRight: "20px", width: "8rem" }}
                 >
                   Edit
                 </Link>
                 <button
                   className="btn btn-danger"
-                  style={{ width: "9rem" }}
+                  style={{ width: "8rem" }}
                   onClick={() => deleteHandler(data.MOV_ID)}
                 >
                   Delete

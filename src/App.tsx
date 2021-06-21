@@ -18,32 +18,36 @@ enum ComponentType {
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <Header />
-      </div>
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route
-          exact
-          path="/movie/create"
-          component={() => <CreateMovie componentType={ComponentType.CREATE} />}
-        />
-        <Route
-          exact
-          path="/edit"
-          render={() => {
-            return <CreateMovie componentType={ComponentType.EDIT} />;
-          }}
-        />
-        <Route exact path="/tickets/all" component={Tickets} />
-        <Route exact path="/ticket/create" component={CreateTickets} />
-        <Route exact path="/customers/all" component={Customers} />
-        <Route exact path="/customer/create" component={CreateCustomer} />
-        <Route exact path="/payments/all" component={Payments} />
-        <Route exact path="/payment/create" component={CreatePayment} />
-      </Switch>
-    </Router>
+    <div className="App">
+      <Router>
+        <div>
+          <Header />
+        </div>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route
+            exact
+            path="/movie/create"
+            component={() => (
+              <CreateMovie componentType={ComponentType.CREATE} />
+            )}
+          />
+          <Route
+            exact
+            path="/edit"
+            render={() => {
+              return <CreateMovie componentType={ComponentType.EDIT} />;
+            }}
+          />
+          <Route exact path="/tickets/all" component={Tickets} />
+          <Route exact path="/ticket/create" component={CreateTickets} />
+          <Route exact path="/customers/all" component={Customers} />
+          <Route exact path="/customer/create" component={CreateCustomer} />
+          <Route exact path="/payments/all" component={Payments} />
+          <Route exact path="/payment/create" component={CreatePayment} />
+        </Switch>
+      </Router>
+    </div>
   );
 }
 
